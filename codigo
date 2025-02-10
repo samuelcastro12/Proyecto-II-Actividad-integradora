@@ -1,0 +1,34 @@
+// Funcionalidad del Sprint: Registro de Usuario y Noticias
+
+// Simulación de una base de datos en memoria
+const baseDeDatos = [];
+
+// Función para registrar un usuario
+function registrarUsuario(nombre, correo, contrasena) {
+  if (!nombre || !correo || !contrasena) {
+    return 'Por favor completa todos los campos';
+  }
+  
+  const usuarioExistente = baseDeDatos.find(user => user.correo === correo);
+  if (usuarioExistente) {
+    return 'Este correo ya está registrado';
+  }
+  
+  let usuario = { nombre, correo, contrasena };
+  baseDeDatos.push(usuario);
+  return 'Registro exitoso';
+}
+
+// Lista de noticias simuladas
+const noticias = [
+  { titulo: 'Evento en el parque', descripcion: 'Este sábado habrá una reunión en el parque central.' },
+  { titulo: 'Nueva zona de juegos', descripcion: 'Se ha inaugurado una nueva área para niños en la comunidad.' }
+];
+
+// Función para mostrar noticias
+function mostrarNoticias() {
+  return noticias.map(noticia => `${noticia.titulo}: ${noticia.descripcion}`).join('\n');
+}
+
+// Exportar funciones para su uso en otros archivos o en GitHub
+module.exports = { registrarUsuario, mostrarNoticias };
